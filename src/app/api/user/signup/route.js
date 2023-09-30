@@ -11,7 +11,7 @@ export async function POST(req) {
   try {
     const reqBody = await req.json();
     const { email, password } = reqBody;
-    console.log(reqBody);
+    console.log("signup>>>", reqBody);
     connectDB();
 
     const isEmail = isValidEmail(email);
@@ -27,8 +27,7 @@ export async function POST(req) {
     }
 
     const hashPassword = await bcrypt.hash(password, 10);
-    console.log(hashPassword);
-
+    
     const newUser = new userModel({
       email: email,
       password: hashPassword,
