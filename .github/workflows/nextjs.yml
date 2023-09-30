@@ -71,10 +71,8 @@ jobs:
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
-      - name: Install dependencies
+      - name: Install dependencies & getting env variables
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-      -name: Getting Env Variables
-        run:
         env:
           URI: ${{ secrets.URI }}
           SECRET_KEY: ${{ secrets.SECRET_KEY}}
