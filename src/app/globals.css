@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.b {
+    border: 1px solid black;
+}
+
+input,
+input:focus {
+    @apply outline-none
+}
+
+input::-ms-reveal,
+input::-ms-clear {
+    display: none;
+}
