@@ -99,7 +99,7 @@ const Signup = () => {
             <div className='w-full h-[0.1rem] bg-hero-pattern rounded-sm'></div>
           </div>
           <p className='text-sm mt-2 text-center'>
-            Don't have an account?
+            Do not have an account?{" "}
             <Link href={"/sign-up"}
               className='text-blue-500'
             >Signup</Link>
