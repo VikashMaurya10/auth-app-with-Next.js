@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
-  distDir: "export",
+  // distDir: "export",
   // async redirects() {
   //   return [
   //     {
