@@ -40,6 +40,8 @@ export async function POST(req) {
 
     return msgResponse("user registered...👍");
   } catch (error) {
+
+    console.log("signup>>> catch", error);
     return errorHandler();
   }
 }

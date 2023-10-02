@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   const URI = process.env.URI;
+  console.log(URI);
   await mongoose
     .connect(URI, {
       useNewUrlParser: true,

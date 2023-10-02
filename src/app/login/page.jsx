@@ -40,7 +40,7 @@ const Signup = () => {
   const fetchData = async () => {
     axios({
       method: 'post',
-      url: "api/user/login",
+      url: "/api/user/login",
       data: formData
     }).then((res) => {
       console.log(res);
