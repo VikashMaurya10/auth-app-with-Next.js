@@ -72,7 +72,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies & getting env variables
-        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+        run: |
+          ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+          echo `${{ secrets.SECRET_KEY}}`
+          echo `${{ secrets.URI }}`
         env:
           URI: ${{ secrets.URI }}
           SECRET_KEY: ${{ secrets.SECRET_KEY}}
