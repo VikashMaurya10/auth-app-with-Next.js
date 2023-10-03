@@ -1,9 +1,8 @@
 import errorHandler from "@/helpers/errorHandler";
-import { msgResponse, successResponse } from "@/helpers/responseHandler";
+import { msgResponse } from "@/helpers/responseHandler";
 import userModel from "@/models/userModel";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
@@ -40,6 +39,7 @@ export async function POST(req) {
 
     return response;
   } catch (error) {
+    console.log("catch>> login", error);
     return errorHandler();
   }
 }
