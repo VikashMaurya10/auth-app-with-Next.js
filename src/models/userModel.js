@@ -11,6 +11,18 @@ const userSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
+    isVerfied: {
+      type: Boolean,
+      default: false,
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    forgotPasswordToken: String,
+    forgotPasswordTokenExpire: Date,
+    varifyToken: String,
+    varifyTokenExpire: Date,
   },
   { timestamps: true }
 );

@@ -1,3 +1,4 @@
+import connectDB from "@/config/db";
 import errorHandler from "@/helpers/errorHandler";
 import { msgResponse } from "@/helpers/responseHandler";
 import userModel from "@/models/userModel";
@@ -9,6 +10,7 @@ export async function POST(req) {
     const reqBody = await req.json();
     console.log("login>>", reqBody);
     const { email, password } = reqBody;
+    connectDB()
 
     const user = await userModel.findOne({ email });
     if (!user) {

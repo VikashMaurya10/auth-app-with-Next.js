@@ -45,7 +45,8 @@ const Signup = () => {
     }).then((res) => {
       console.log(res);
       if (res?.data?.error) {
-        return toast.warn(res?.data?.error)
+        toast.warn(res?.data?.error)
+        return router.push("/sign-up")
       }
       if (res?.data?.message) {
         toast.success(res?.data?.message)
@@ -100,7 +101,7 @@ const Signup = () => {
           </div>
           <p className='text-sm mt-2 text-center'>
             Do not have an account?{" "}
-            <Link href={"/sign-up"}
+            <Link href={"/signup"}
               className='text-blue-500'
             >Signup</Link>
           </p>
