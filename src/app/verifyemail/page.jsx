@@ -1,18 +1,27 @@
-"use client"
-
-import React, { useEffect, useState } from "react"
+'use client'
 import axios from "axios"
-import { useRouter } from "next/navigation"
+import { useEffect, useState } from 'react'
+import { usePathname, useSearchParams } from 'next/navigation'
 import { toast } from "react-toastify"
 
 const Page = () => {
     const [verify, setVerify] = useState(false)
-    const router = useRouter()
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+
+    useEffect(() => {
+        const url = `${searchParams}`
+        const token = url.split('=')[1]
+        console.log(token)
+
+        getVerified(token)
+    }, [pathname, searchParams])
+
     const getVerified = async (token) => {
         await axios({
             method: "post",
             url: 'api/user/verifyemail',
-            data: { token }
+            data: { token: token }
         }).then((res) => {
             if (res?.data?.error) {
                 router.push("/signup")
@@ -28,12 +37,6 @@ const Page = () => {
             console.log(err);
         })
     }
-
-    useEffect(() => {
-        const token = window.location.search.split('=')[1]
-        getVerified(token)
-    }, [getVerified])
-
 
     return (
         <section>

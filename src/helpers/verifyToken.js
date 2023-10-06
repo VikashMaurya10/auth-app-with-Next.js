@@ -3,10 +3,16 @@ import jwt from "jsonwebtoken";
 
 const VerifyToken = (req) => {
   try {
-    const inCodedToken = req.cookies.get("token")?.value;
+    const inCodedToken = req?.cookies?.get("token")?.value || "";
 
-    const deCodedToken = jwt.verify(inCodedToken, process.env.SECRET_KEY);
-    return deCodedToken.id;
+    if (
+      inCodedToken?.length > 0 &&
+      inCodedToken != null &&
+      inCodedToken != undefined
+    ) {
+      const deCodedToken = jwt.verify(inCodedToken, process.env.SECRET_KEY);
+      return deCodedToken.id;
+    }
   } catch (error) {
     console.log("varifyToken>>>", error);
     return errorHandler();

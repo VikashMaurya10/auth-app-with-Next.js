@@ -9,6 +9,10 @@ export async function GET(req) {
     connectDB();
     const user_Id = await VerifyToken(req);
 
+    if (!user_Id) {
+      return errorHandler();
+    }
+
     const userData = await userModel
       .findOne({ _id: user_Id })
       .select("-password");

@@ -13,7 +13,12 @@ const ProfilePage = () => {
       url: '/api/user/verifiedUserData'
     }).then((res) => {
       console.log(res);
-      router.push(`/profile/${res?.data?._id}`)
+      // router.push(`/profile/${res?.data?._id}`)
+
+      router.push({
+        pathname: '/profile/[id]',
+        query: { id: res?.data?._id },
+      })
     }).catch((err) => {
       console.log(err);
     })

@@ -14,7 +14,7 @@ export async function POST(req) {
     if (!user) {
       return errorHandler("Invalid token");
     }
-    
+
     user.isVerified = true;
     user.verifyToken = undefined;
     user.verifyTokenExpire = undefined;
