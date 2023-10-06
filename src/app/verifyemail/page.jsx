@@ -32,7 +32,7 @@ const Page = () => {
     useEffect(() => {
         const token = window.location.search.split('=')[1]
         getVerified(token)
-    }, [])
+    }, [getVerified])
 
 
     return (
