@@ -2,7 +2,7 @@
 
 import { isValidEmail } from "@/helpers/validationMethods"
 import axios from "axios"
-import { useState } from "react"
+import React, { useState } from "react"
 import { toast } from "react-toastify"
 
 const page = () => {
