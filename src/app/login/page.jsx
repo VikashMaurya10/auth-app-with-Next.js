@@ -32,7 +32,6 @@ const Signup = () => {
     }
 
     if (validEmail && validPassword) {
-      console.log(formData);
       fetchData()
     }
   }
@@ -43,7 +42,6 @@ const Signup = () => {
       url: "api/user/login",
       data: formData
     }).then((res) => {
-      console.log(res);
       if (res?.data?.error) {
         toast.warn(res?.data?.error)
         return router.push("/sign-up")
@@ -61,8 +59,8 @@ const Signup = () => {
 
   return (
     <section className='flex items-center justify-center h-screen'>
-      <div className='backdrop-blur flex items-center justify-center flex-col  gap-4 w-[350px] h-[400px] px-8 rounded-md bg-white'>
-        <h1 className='font-robo font-bold text-3xl text-left w-full '>Login</h1>
+      <div className='backdrop-blur flex items-center justify-center flex-col gap-4 w-[350px] p-6 m-5 rounded-md bg-white'>
+        <h1 className='font-robo font-bold text-3xl text-left w-full'>Login</h1>
         <form className='w-full'>
           <div className='w-full mt-4'>
             <input
@@ -99,12 +97,11 @@ const Signup = () => {
             </div>
             <div className='w-full h-[0.1rem] bg-hero-pattern rounded-sm'></div>
           </div>
-          <p className='text-sm mt-2 text-center'>
-            Do not have an account?{" "}
-            <Link href={"/signup"}
-              className='text-blue-500'
-            >Signup</Link>
-          </p>
+          <Link href={"/forgotpassword"}
+            className='text-blue-500 text-sm mt-2 font-medium ml-auto mr-0 block w-fit'
+          >
+            Forgot password?
+          </Link>
           <button type='button' className='block mx-auto py-2 px-7 text-white font-semibold rounded mt-7 bg-hero-pattern w-full '
             onClick={handleSubmit}
           >
@@ -113,8 +110,13 @@ const Signup = () => {
           <p className='text-black text-center mt-7'>or Connect with Social Media</p>
           <button type='button' className='flex items-center gap-4 mx-auto py-2 px-7 text-white font-semibold rounded mt-3 bg-hero-pattern w-full text-center'>
             <AiOutlineGoogle className='text-2xl' />Login with Googole</button>
+          <p className='text-sm mt-2 text-center'>
+            Do not have an account?{" "}
+            <Link href={"/signup"}
+              className='text-blue-500'
+            >Signup</Link>
+          </p>
         </form>
-
       </div>
 
     </section >

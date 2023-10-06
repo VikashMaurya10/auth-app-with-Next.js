@@ -1,36 +1,27 @@
 'use client'
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 const ProfilePage = () => {
-const router = useRouter()
-  const logout = async () => {
+  const router = useRouter()
+
+  useEffect(() => {
     axios({
       method: 'get',
-      url: '/api/user/logout'
+      url: '/api/user/verifiedUserData'
     }).then((res) => {
-      if (res?.data?.error) {
-        return toast.warn(res?.data?.error)
-      }
-      if (res?.data?.message) {
-        toast.success(res?.data?.message)
-        return router.push("/login")
-      }
-    }).catch((err => {
+      console.log(res);
+      router.push(`/profile/${res?.data?._id}`)
+    }).catch((err) => {
       console.log(err);
-    }))
-  }
+    })
+  }, [])
 
   return (
-    <div>
-      Profile ProfilePage
-      <button className='flex items-center gap-4 mx-auto py-2 px-7 text-white font-semibold rounded mt-3 bg-hero-pattern text-center border-2 border-solid border-white w-fit'
-        onClick={logout}
-      >
-        logout
-      </button>
-    </div>
+    <>
+    </>
   );
 };
 
