@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 
-const page = ({ params }) => {
+const Page = ({ params }) => {
   const router = useRouter()
 
   const logout = async () => {
@@ -34,4 +34,4 @@ const page = ({ params }) => {
   )
 }
 
-export default page
+export default Page

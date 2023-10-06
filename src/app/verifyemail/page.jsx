@@ -5,7 +5,7 @@ import axios from "axios"
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 
-const page = () => {
+const Page = () => {
     const [verify, setVerify] = useState(false)
     const router = useRouter()
     const getVerified = async (token) => {
@@ -46,4 +46,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

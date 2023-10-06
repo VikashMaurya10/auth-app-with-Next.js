@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineGoogle } from 'react-icons/ai'
 import { toast } from "react-toastify";
 
-const page = () => {
+const Page = () => {
     const router = useRouter()
     const [typePassword, setTypePassword] = useState(false)
     const [incodedToken, setInCodedToken] = useState("")
@@ -113,4 +113,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page
