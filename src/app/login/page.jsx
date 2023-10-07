@@ -44,7 +44,7 @@ const Signup = () => {
     }).then((res) => {
       if (res?.data?.error) {
         toast.warn(res?.data?.error)
-        return router.push("/sign-up")
+        return router.push("/signup")
       }
       if (res?.data?.message) {
         toast.success(res?.data?.message)
