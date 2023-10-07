@@ -8,6 +8,7 @@ const Page = ({ params }) => {
   const router = useRouter()
 
   const logout = async () => {
+
     axios({
       method: 'get',
       url: '/api/user/logout'
@@ -23,6 +24,7 @@ const Page = ({ params }) => {
       console.log(err);
     }))
   }
+
   return (
     <div>{params.id}
       ProfilePage

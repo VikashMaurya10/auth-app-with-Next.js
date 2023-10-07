@@ -1,28 +1,24 @@
 'use client'
+
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-
+import jwt from "jsonwebtoken"
 const ProfilePage = () => {
   const router = useRouter()
 
-  useEffect(() => {
-    axios({
+  const getData = async () => {
+    const res = await axios({
       method: 'get',
       url: '/api/user/verifiedUserData'
-    }).then((res) => {
-      console.log(res);
-      // router.push(`/profile/${res?.data?._id}`)
-
-      router.push({
-        pathname: '/profile/[id]',
-        query: { id: res?.data?._id },
-      })
-    }).catch((err) => {
-      console.log(err);
     })
-  }, [router])
+    router.push(`/profile/${res?.data?._id}`);
+  }
+
+  useEffect(() => {
+    getData()
+  })
 
   return (
     <>

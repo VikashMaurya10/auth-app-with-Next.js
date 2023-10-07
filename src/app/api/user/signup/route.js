@@ -46,7 +46,8 @@ export async function POST(req) {
 
     if (!isSendEmail) {
       console.log("signup>>>> email not send");
-      return errorHandler("some email issue");
+      await userModel.findByIdAndDelete(savedUser?._id);
+      return errorHandler();
     }
 
     return msgResponse("user registered...👍");

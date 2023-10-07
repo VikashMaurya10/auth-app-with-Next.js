@@ -6,17 +6,16 @@ import { toast } from "react-toastify"
 
 const Page = () => {
     const [verify, setVerify] = useState(false)
-    const pathname = usePathname()
     const router = useRouter()
     const searchParams = useSearchParams()
 
     useEffect(() => {
         const url = `${searchParams}`
-        const token = url.split('=')[1].replaceAll('%24', "$")
+        const token = url.split('=')[1].replaceAll('%24', "$").replaceAll("%2F", "/")
         console.log(url, token)
 
         getVerified(token)
-    }, [pathname, searchParams])
+    }, [])
 
     const getVerified = async (token) => {
         await axios({
@@ -25,7 +24,7 @@ const Page = () => {
             data: { token: token }
         }).then((res) => {
             if (res?.data?.error) {
-                // router.push("/signup")
+                router.push("/signup")
                 return toast.warning(res?.data?.error)
             }
             if (res?.data?.message) {
