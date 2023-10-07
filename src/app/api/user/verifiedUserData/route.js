@@ -16,6 +16,7 @@ export async function GET(req) {
     const userData = await userModel
       .findOne({ _id: user_Id })
       .select("-password");
+
     return successResponse(userData);
   } catch (err) {
     console.log("verifyUser>>>", err);

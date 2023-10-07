@@ -3,8 +3,7 @@ import jwt from "jsonwebtoken";
 
 const VerifyToken = (req) => {
   try {
-    const inCodedToken = req?.cookies?.get("token")?.value || "";
-
+    const inCodedToken = req?.cookies?.get("token")?.value;
     if (
       inCodedToken?.length > 0 &&
       inCodedToken != null &&
