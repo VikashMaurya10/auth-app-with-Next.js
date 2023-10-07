@@ -8,17 +8,16 @@ import jwt from "jsonwebtoken"
 const ProfilePage = () => {
   const router = useRouter()
 
-  const getData = async () => {
-    const res = await axios({
+  useEffect(() => {
+    axios({
       method: 'get',
       url: '/api/user/verifiedUserData'
+    }).then((res) => {
+      router.push(`/profile/${res?.data?._id}`);
+    }).catch((err) => {
+      console.log(err);
     })
-    router.push(`/profile/${res?.data?._id}`);
-  }
-
-  useEffect(() => {
-    getData()
-  })
+  }, [])
 
   return (
     <>
