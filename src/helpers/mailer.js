@@ -49,7 +49,7 @@ const mailer = async ({ email, emailType, userId }) => {
         `,
     };
 
-    const isSendEmail = transport.sendMail(options);
+    const isSendEmail = await transport.sendMail(options);
     if (!isSendEmail) {
       return false;
     }

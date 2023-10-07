@@ -1,18 +1,19 @@
 'use client'
 import axios from "axios"
 import { useEffect, useState } from 'react'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { toast } from "react-toastify"
 
 const Page = () => {
     const [verify, setVerify] = useState(false)
     const pathname = usePathname()
+    const router = useRouter()
     const searchParams = useSearchParams()
 
     useEffect(() => {
         const url = `${searchParams}`
-        const token = url.split('=')[1]
-        console.log(token)
+        const token = url.split('=')[1].replaceAll('%24', "$")
+        console.log(url, token)
 
         getVerified(token)
     }, [pathname, searchParams])
@@ -24,7 +25,7 @@ const Page = () => {
             data: { token: token }
         }).then((res) => {
             if (res?.data?.error) {
-                router.push("/signup")
+                // router.push("/signup")
                 return toast.warning(res?.data?.error)
             }
             if (res?.data?.message) {

@@ -28,7 +28,7 @@ export async function POST(req) {
 
     const hashPassword = await bcrypt.hash(password, 10);
 
-    const newUser = new userModel({
+    const newUser = await new userModel({
       email: email,
       password: hashPassword,
     });
@@ -46,7 +46,7 @@ export async function POST(req) {
 
     if (!isSendEmail) {
       console.log("signup>>>> email not send");
-      return errorHandler();
+      return errorHandler("some email issue");
     }
 
     return msgResponse("user registered...👍");
