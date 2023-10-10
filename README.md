@@ -1,6 +1,14 @@
 ## Getting Started
 
-First, run the development server:
+1. install dependencies:
+
+```bash
+npm i
+```
+
+2. create and setup .env file by using example.env
+
+3. run the development server:
 
 ```bash
 npm run dev
