@@ -1,9 +1,10 @@
 "use client"
 
+import { isValidPassword } from "@/helpers/validationMethods";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineGoogle } from 'react-icons/ai'
+import { useEffect, useState } from "react";
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { toast } from "react-toastify";
 
 const Page = () => {
@@ -56,7 +57,19 @@ const Page = () => {
     }
 
     const handleSubmit = () => {
-        updatePassword()
+        const validCreatePassword = isValidPassword(getInput.createPassword)
+        var validPassword = false
+
+        if (validCreatePassword) {
+            if (getInput.createPassword !== getInput.password) {
+                return toast.warning("Password dosen't match")
+            }
+            validPassword = isValidPassword(getInput.password)
+        }
+
+        if (validPassword) {
+            updatePassword()
+        }
     }
 
     return (
