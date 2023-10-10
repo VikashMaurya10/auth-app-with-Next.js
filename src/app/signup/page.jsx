@@ -60,6 +60,7 @@ const Signup = () => {
                 setTimeout(() => {
                     toast.success("Check your mail box to verify email")
                 }, 1500);
+                return router.push("/login")
             }
         }).catch((err) => {
             console.log(err);

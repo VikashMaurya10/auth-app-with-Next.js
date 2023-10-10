@@ -10,7 +10,7 @@ export async function POST(req) {
     const reqBody = await req.json();
     // console.log("login>>", reqBody);
     const { email, password } = reqBody;
-    connectDB()
+    connectDB();
 
     const user = await userModel.findOne({ email });
     if (!user) {
@@ -34,7 +34,7 @@ export async function POST(req) {
     const response = msgResponse("login Successful");
 
     response.cookies.set("token", token, {
-      httpOnly: true,
+      // httpOnly: true, //this is make cookie only server side accessiable
       secure: true,
       expiresIn: "1d",
     });

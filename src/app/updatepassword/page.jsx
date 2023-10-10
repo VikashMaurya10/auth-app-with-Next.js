@@ -39,7 +39,9 @@ const Page = () => {
             }
             if (res?.data?.message) {
                 toast.success(res?.data?.message)
-                return router.push("/login")
+                setTimeout(() => {
+                    return router.push("/login")
+                }, 2000)
             }
         }).catch((err) => {
             console.log(err);

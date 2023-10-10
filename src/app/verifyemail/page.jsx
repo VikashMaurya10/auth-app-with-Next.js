@@ -1,7 +1,8 @@
 'use client'
+
 import axios from "axios"
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { toast } from "react-toastify"
 
 const Page = () => {
@@ -14,29 +15,30 @@ const Page = () => {
         const token = url.split('=')[1].replaceAll('%24', "$").replaceAll("%2F", "/")
         console.log(url, token)
 
+        const getVerified = async (token) => {
+            await axios({
+                method: "post",
+                url: 'api/user/verifyemail',
+                data: { token: token }
+            }).then((res) => {
+                if (res?.data?.error) {
+                    router.push("/signup")
+                    return toast.warning(res?.data?.error)
+                }
+                if (res?.data?.message) {
+                    setVerify(true)
+                    toast.success(res?.data?.message)
+                    return router.push("/login")
+                }
+
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
         getVerified(token)
-    }, [])
+    }, [searchParams, router])
 
-    const getVerified = async (token) => {
-        await axios({
-            method: "post",
-            url: 'api/user/verifyemail',
-            data: { token: token }
-        }).then((res) => {
-            if (res?.data?.error) {
-                router.push("/signup")
-                return toast.warning(res?.data?.error)
-            }
-            if (res?.data?.message) {
-                setVerify(true)
-                toast.success(res?.data?.message)
-                return router.push("/login")
-            }
 
-        }).catch((err) => {
-            console.log(err);
-        })
-    }
 
     return (
         <section>

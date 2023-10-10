@@ -2,12 +2,13 @@
 
 import { isValidEmail } from "@/helpers/validationMethods"
 import axios from "axios"
+import { useRouter } from "next/navigation"
 import React, { useState } from "react"
 import { toast } from "react-toastify"
 
 const Page = () => {
     const [email, setEmail] = useState("")
-
+    const router = useRouter()
     const handleChange = (e) => {
         setEmail(e.target.value)
     }
@@ -23,7 +24,9 @@ const Page = () => {
             }
 
             if (res?.data?.message) {
-                return toast.warn(res?.data?.message)
+                setEmail("")
+                toast.warn(res?.data?.message)
+                return router.push("/login")
             }
 
         }).catch((err) => {

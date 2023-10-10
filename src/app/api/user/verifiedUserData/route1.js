@@ -4,10 +4,8 @@ import { successResponse } from "@/helpers/responseHandler";
 import VerifyToken from "@/helpers/verifyToken";
 import userModel from "@/models/userModel";
 
-export async function POST(req) {
+export async function GET(req) {
   try {
-    const reqBody = await req.json();
-    // console.log(reqBody);
     connectDB();
     const user_Id = await VerifyToken(req);
 
@@ -15,10 +13,9 @@ export async function POST(req) {
       return errorHandler();
     }
 
-    // console.log(user_Id);
     const userData = await userModel
       .findOne({ _id: user_Id })
-      .select("email isAdmin  isVerified createdAt updatedAt");
+      .select("-password");
 
     return successResponse(userData);
   } catch (err) {
